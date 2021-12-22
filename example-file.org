@@ -1,0 +1,16 @@
+* TODO [#A] Title? :tag1::tag2:
+** Sub:- 2 :tag2:
+:PROPERTIES:
+:prop1+: 1
+:prop3: 2ab
+:END:
+
+#+NAME: Affilated name
+#+CAPTION: What's up?
+#+caption[new]: This works? Yes!
+#+attr_center: sup
+-----
+
+:Drawer:
+lin1
+:END:

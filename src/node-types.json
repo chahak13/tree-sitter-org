@@ -1,0 +1,212 @@
+[
+  {
+    "type": "affiliated_properties",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "document",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "affiliated_properties",
+          "named": true
+        },
+        {
+          "type": "drawer",
+          "named": true
+        },
+        {
+          "type": "heading",
+          "named": true
+        },
+        {
+          "type": "horizontal_rule",
+          "named": true
+        },
+        {
+          "type": "property_drawer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "drawer",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "heading",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "headline_comment",
+          "named": true
+        },
+        {
+          "type": "headline_keyword",
+          "named": true
+        },
+        {
+          "type": "priority",
+          "named": true
+        },
+        {
+          "type": "stars",
+          "named": true
+        },
+        {
+          "type": "tags",
+          "named": true
+        },
+        {
+          "type": "title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "headline_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "horizontal_rule",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "property_drawer",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "stars",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tags",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "title",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\r",
+    "named": false
+  },
+  {
+    "type": "#+",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ":PROPERTIES:",
+    "named": false
+  },
+  {
+    "type": "ATTR_",
+    "named": false
+  },
+  {
+    "type": "AUTHOR",
+    "named": false
+  },
+  {
+    "type": "CAPTION",
+    "named": false
+  },
+  {
+    "type": "DATE",
+    "named": false
+  },
+  {
+    "type": "HEADER",
+    "named": false
+  },
+  {
+    "type": "NAME",
+    "named": false
+  },
+  {
+    "type": "PLOT",
+    "named": false
+  },
+  {
+    "type": "RESULTS",
+    "named": false
+  },
+  {
+    "type": "TITLE",
+    "named": false
+  },
+  {
+    "type": "attr_",
+    "named": false
+  },
+  {
+    "type": "author",
+    "named": false
+  },
+  {
+    "type": "caption",
+    "named": false
+  },
+  {
+    "type": "date",
+    "named": false
+  },
+  {
+    "type": "header",
+    "named": false
+  },
+  {
+    "type": "headline_comment",
+    "named": true
+  },
+  {
+    "type": "name",
+    "named": false
+  },
+  {
+    "type": "plot",
+    "named": false
+  },
+  {
+    "type": "priority",
+    "named": true
+  },
+  {
+    "type": "results",
+    "named": false
+  },
+  {
+    "type": "title",
+    "named": false
+  }
+]

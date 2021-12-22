@@ -1,0 +1,58 @@
+=================================
+Heading 1 with headline_keyword and cookie
+=================================
+* TODO [#A] Title?
+
+---
+(document
+  (heading
+  (stars)
+  (headline_keyword)
+  (priority)
+  (title)))
+
+======================
+Heading 2 with headline_keyword
+======================
+** DONE Subheading - 2
+
+---
+(document
+  (heading
+    (stars)
+    (headline_keyword)
+    (title)))
+
+======================
+Heading 3 with comment
+======================
+*** COMMENT Subheading 3
+
+---
+(document
+  (heading
+    (stars)
+    (headline_comment)
+    (title)))
+
+=================
+Multiple headings
+=================
+* Heading 1
+** Heading 2
+*** Heading 3
+
+---
+(document
+  (heading
+    (stars)
+    (headline_keyword)
+    (title))
+  (heading
+    (stars)
+    (headline_keyword)
+    (title))
+  (heading
+    (stars)
+    (headline_keyword)
+    (title)))
