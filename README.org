@@ -2,11 +2,18 @@
 
 *WIP*
 
-* Tasks [3/7]
+* Tasks [9/13]
 - [X] Heading lines
+- [X] Headline tags
 - [ ] Fixed width area
 - [X] Affiliated attributes
 - [X] Horizontal rule
 - [ ] TODO lines (=#+TODO:=)
 - [ ] Blocks and Greater blocks
-- [ ] Drawers
+- [X] Drawers
+- [X] Property drawers
+- [X] Footnotes
+- [X] Markup text
+- [X] Links
+  - File links don't work
+- [ ] T
