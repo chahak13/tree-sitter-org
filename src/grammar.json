@@ -10,27 +10,6 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "heading"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_linebreak"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "SYMBOL",
-              "name": "text"
-            },
-            {
               "type": "SYMBOL",
               "name": "affiliated_properties"
             },
@@ -40,15 +19,15 @@
             },
             {
               "type": "SYMBOL",
-              "name": "drawer"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "property_drawer"
+              "name": "_org_block"
             },
             {
               "type": "SYMBOL",
               "name": "footnote_link"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "text"
             }
           ]
         }
@@ -380,8 +359,69 @@
         ]
       }
     },
+    "_org_block": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "heading"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "property_drawer"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "text"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "drawer"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_org_block"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "drawer": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": 1,
       "content": {
         "type": "SEQ",
@@ -410,21 +450,25 @@
       }
     },
     "_drawer_begin": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_char_num_underscore_hyphen"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_char_num_underscore_hyphen"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          }
+        ]
+      }
     },
     "_drawer_lines": {
       "type": "REPEAT1",
@@ -434,13 +478,17 @@
       }
     },
     "_drawer_end": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": ":[eE][nN][dD]:"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": ":[eE][nN][dD]:\\n"
+          }
+        ]
+      }
     },
     "property_drawer": {
       "type": "PREC",
@@ -453,11 +501,19 @@
             "name": "_property_drawer_begin"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_node_property"
-            }
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "node_property"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "SYMBOL",
@@ -475,7 +531,7 @@
         }
       ]
     },
-    "_node_property": {
+    "node_property": {
       "type": "PREC",
       "value": 3,
       "content": {
@@ -483,7 +539,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_property_name"
+            "name": "_property_key"
           },
           {
             "type": "SYMBOL",
@@ -496,7 +552,7 @@
         ]
       }
     },
-    "_property_name": {
+    "_property_key": {
       "type": "PREC",
       "value": 1,
       "content": {
@@ -504,7 +560,7 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": ":[^\\s:+]+(|\\+):"
+            "value": "[^\\s:+]+(|\\+):"
           }
         ]
       }
@@ -582,7 +638,7 @@
     },
     "text": {
       "type": "PREC",
-      "value": 1,
+      "value": -1,
       "content": {
         "type": "REPEAT1",
         "content": {
@@ -787,10 +843,6 @@
         {
           "type": "STRING",
           "value": ";"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
         },
         {
           "type": "STRING",
@@ -1180,13 +1232,13 @@
     },
     "text_normal": {
       "type": "PREC",
-      "value": -1,
+      "value": -2,
       "content": {
         "type": "SEQ",
         "members": [
           {
             "type": "PATTERN",
-            "value": "[ \\ta-zA-Z0-9!@#\\$%^&\\(\\)`\\'\\\";:\\.?]+"
+            "value": "[\\s\\ta-zA-Z0-9!@#\\$%^&\\(\\)`\\'\\\";\\.?]+"
           }
         ]
       }

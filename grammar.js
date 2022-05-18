@@ -6,19 +6,21 @@ module.exports = grammar({
     prec(-1,
          repeat1(
            choice(
-             prec(1,
-                  choice(
-                    $.heading,
-                    $._linebreak,
-                  )
-                 ),
-             $.text,
+             // prec(1,
+             //      choice(
+             //        $.heading,
+             //        $._linebreak,
+             //      )
+             //     ),
              // $.fixed_width_area,
              $.affiliated_properties,
              $.horizontal_rule,
-             $.drawer,
-             $.property_drawer,
+             $._org_block,
+             // $.property_drawer,
+             // $.drawer,
+             // $._drawer_end,
              $.footnote_link,
+             $.text,
            ),
          ),
         ),
@@ -113,38 +115,48 @@ module.exports = grammar({
               ),
              ),
 
+    _org_block: $ =>
+    prec.left(
+      seq(
+      $.heading,
+        optional($.property_drawer),
+        optional($.text),
+        optional($.drawer),
+        optional($._org_block),
+    )
+    ),
     // Drawers
     drawer: $ =>
-    prec(1,
+    prec.left(1,
          seq(
            $._drawer_begin,
            optional($._drawer_lines),
            $._drawer_end,
          ),
         ),
-    _drawer_begin: $ => seq(":", $._char_num_underscore_hyphen, ":"),
+    _drawer_begin: $ => prec(1, seq(":", $._char_num_underscore_hyphen, ":")),
     _drawer_lines: $ => repeat1($._line),
-    _drawer_end: $ => seq(/:[eE][nN][dD]:/),
+    _drawer_end: $ => prec(1, seq(/:[eE][nN][dD]:\n/)),
 
     property_drawer: $ =>
     prec(2,
          seq(
            $._property_drawer_begin,
-           repeat($._node_property),
+           optional(repeat1($.node_property)),
            $._drawer_end,
          ),
         ),
 
     _property_drawer_begin: $ => seq(":PROPERTIES:"),
-    _node_property: $ =>
+    node_property: $ =>
     prec(3,
          seq(
-           $._property_name,
+           $._property_key,
            $._property_value,
            $._linebreak,
          ),
         ),
-    _property_name: $ => prec(1, seq(/:[^\s:+]+(|\+):/)),
+    _property_key: $ => prec(1, seq(/[^\s:+]+(|\+):/)),
     _property_value: $ => seq(/[^\n]+/),
 
     // Footnotes
@@ -161,7 +173,7 @@ module.exports = grammar({
 
     // Text
     text: $ =>
-    prec(1 ,
+    prec(-1,
     repeat1(
       choice(
         // $.timestamp,
@@ -231,7 +243,7 @@ module.exports = grammar({
 
     _text_markup_pre: $ => choice(/[ \t]/, "-", "(", "\"", "'", "{", ""),
 
-    _text_markup_post: $ => choice(/\s/, "-", ".", ",", ";", ":", "!", "?", "'", ")", "}", "[", "\""),
+    _text_markup_post: $ => choice(/\s/, "-", ".", ",", ";", "!", "?", "'", ")", "}", "[", "\""),
 
     _text_inside_sty_normal: $ => $.text_normal,
 
@@ -335,7 +347,7 @@ module.exports = grammar({
 
     // text_normal: $ => seq(/.[^*/_=+\[<{^\\\n\r]*/),
     // text_normal: $ => prec.left(-1, $._characters),
-    text_normal: $ => prec(-1, seq(/[ \ta-zA-Z0-9!@#\$%^&\(\)`\'\";:\.?]+/)),
+    text_normal: $ => prec(-2, seq(/[\s\ta-zA-Z0-9!@#\$%^&\(\)`\'\";\.?]+/)),
 
     horizontal_rule: $ => seq(/-----+/),
     _word: $ => /\w+/,

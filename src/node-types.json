@@ -15,7 +15,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "affiliated_properties",
@@ -143,6 +143,11 @@
     "fields": {}
   },
   {
+    "type": "node_property",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "plain_link_path",
     "named": true,
     "fields": {}
@@ -150,7 +155,17 @@
   {
     "type": "property_drawer",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "node_property",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "regular_link_description",
